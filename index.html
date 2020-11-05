@@ -74,7 +74,7 @@
 
     var batchUpdateRequest = {requests: requests}
 
-    gapi.client.sheets.spreadsheets.batchUpdate({
+    return gapi.client.sheets.spreadsheets.batchUpdate({
   spreadsheetId: spreadsheetId,
   resource: batchUpdateRequest
 }).then((response) => {

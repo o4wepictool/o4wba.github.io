@@ -61,6 +61,9 @@
               },
               function(err) { console.error("Execute error", err); });
   }
+  function edit() {
+
+  }
 
 
 
@@ -73,5 +76,13 @@
 <button onclick="get()">GET</button>
     <iframe src = "https://docs.google.com/spreadsheets/d/1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw/edit?usp=sharing" height="500" width="500" title="Sheet"> </iframe>
     <button onclick = "edit()">EDIT ENTRY</button>
+
+<form> Select CID Consent (yes/no):
+  <select selection = "consent">
+    <option></option>
+    <option>YES</option>
+    <option>NO</option>
+  </select>
+</form>
   </body>
 </html>

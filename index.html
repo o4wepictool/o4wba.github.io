@@ -62,6 +62,25 @@
               function(err) { console.error("Execute error", err); });
   }
   function edit() {
+    var requests = [];
+
+    requests.push({
+      findReplace: {
+      find: "PropertyName",
+      replacement: "CHANGED",
+      allSheets: true
+    }
+    });
+
+    var batchUpdateRequest = {requests: requests}
+
+    gapi.client.sheets.spreadsheets.batchUpdate({
+  spreadsheetId: spreadsheetId,
+  resource: batchUpdateRequest
+}).then((response) => {
+  var findReplaceResponse = response.result.replies[1].findReplace;
+  console.log(`${findReplaceResponse.occurrencesChanged} replacements made.`);
+});
 
   }
 

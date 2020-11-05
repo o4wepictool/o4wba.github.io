@@ -23,7 +23,7 @@
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
-  function execute() {
+  function update() {
     return gapi.client.sheets.spreadsheets.values.update({
       "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
       "range": "B2:B2",
@@ -45,12 +45,31 @@
               },
               function(err) { console.error("Execute error", err); });
   }
+
+  function get() {
+    return gapi.client.sheets.spreadsheets.values.get({
+      "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
+      "range": "A:A",
+      "dateTimeRenderOption": "FORMATTED_STRING",
+      "majorDimension": "COLUMNS",
+      "valueRenderOption": "FORMATTED_VALUE"
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
+
+
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "773931345380-h72omf2okreqiud6ff9bmn33ej7v3e8e.apps.googleusercontent.com"});
   });
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
-<button onclick="execute()">EXECUTE</button>
-    <iframe src = "https://docs.google.com/spreadsheets/d/1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw/edit?usp=sharing" height="500" width="300" title="Sheet" </iframe>
+<button onclick="update()">UPDATE</button>
+<button onclick="get()">GET</button>
+    <iframe src = "https://docs.google.com/spreadsheets/d/1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw/edit?usp=sharing" height="500" width="300" title="Sheet"> </iframe>
   </body>
 </html>

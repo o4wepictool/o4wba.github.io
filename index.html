@@ -105,11 +105,14 @@
 
                 var rowNum;
                 for (var i = 1; i <= values.length; i++) {
+                  console.log("Current Property is " + values[i]);
                   if (values[i] == "Property2") {
                     rowNum = i;
                     break;
                   }
                 }
+
+                console.log("rowNum is " + rowNum);
 
               Prop2SigUpdate(rowNum);
 

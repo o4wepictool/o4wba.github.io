@@ -100,13 +100,14 @@
                 console.log("Response", response);
                 var obj = response.result
                 console.log("Obj", obj);
-                var values = obj.values;
+                var valuesObject = obj.values;
+                console.log("ValuesObject", valuesObject);
+                var values = valuesObject[0];
                 console.log("Values", values);
-
                 var rowNum;
                 for (var i = 1; i <= values.length; i++) {
                   console.log("Current Property is " + values[i]);
-                  if (values[i] == "Property2") {
+                  if (values[i-1] == "Property2") {
                     rowNum = i;
                     break;
                   }

@@ -87,60 +87,60 @@
 
   }
 
-  function Prop2Sig() {
-  return gapi.client.sheets.spreadsheets.values.get({
-      "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-      "range": "A:A",
-      "dateTimeRenderOption": "FORMATTED_STRING",
-      "majorDimension": "COLUMNS",
-      "valueRenderOption": "FORMATTED_VALUE"
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-                var obj = response.result
-                console.log("Obj", obj);
-                String[] values = obj.values;
-                console.log("Values", values);
+  // function Prop2Sig() {
+  // return gapi.client.sheets.spreadsheets.values.get({
+  //     "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
+  //     "range": "A:A",
+  //     "dateTimeRenderOption": "FORMATTED_STRING",
+  //     "majorDimension": "COLUMNS",
+  //     "valueRenderOption": "FORMATTED_VALUE"
+  //   })
+  //       .then(function(response) {
+  //               // Handle the results here (response.result has the parsed body).
+  //               console.log("Response", response);
+  //               var obj = response.result
+  //               console.log("Obj", obj);
+  //               String[] values = obj.values;
+  //               console.log("Values", values);
 
-                int rowNum
-                for (int i = 1; i <= values.length; i++) {
-                  if (values[i] == "Property2") {
-                    rowNum = i;
-                    break;
-                  }
-                }
+  //               int rowNum
+  //               for (int i = 1; i <= values.length; i++) {
+  //                 if (values[i] == "Property2") {
+  //                   rowNum = i;
+  //                   break;
+  //                 }
+  //               }
 
-              Prop2SigUpdate(rowNum);
+  //             Prop2SigUpdate(rowNum);
 
-              },
-              function(err) { console.error("Execute error", err); });
-  }
+  //             },
+  //             function(err) { console.error("Execute error", err); });
+  // }
 
-  function Prop2SigUpdate(int rowNum) {
-    String range = "B"+rowNum+":B"+rowNum;
-    console.log("range is " + range);
-    return gapi.client.sheets.spreadsheets.values.update({
-      "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-      "range": range,
-      "includeValuesInResponse": true,
-      "responseDateTimeRenderOption": "FORMATTED_STRING",
-      "responseValueRenderOption": "FORMATTED_VALUE",
-      "valueInputOption": "RAW",
-      "resource": {
-        "values": [
-          [
-            "YES"
-          ]
-        ]
-      }
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
+  // function Prop2SigUpdate(int rowNum) {
+  //   String range = "B"+rowNum+":B"+rowNum;
+  //   console.log("range is " + range);
+  //   return gapi.client.sheets.spreadsheets.values.update({
+  //     "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
+  //     "range": range,
+  //     "includeValuesInResponse": true,
+  //     "responseDateTimeRenderOption": "FORMATTED_STRING",
+  //     "responseValueRenderOption": "FORMATTED_VALUE",
+  //     "valueInputOption": "RAW",
+  //     "resource": {
+  //       "values": [
+  //         [
+  //           "YES"
+  //         ]
+  //       ]
+  //     }
+  //   })
+  //       .then(function(response) {
+  //               // Handle the results here (response.result has the parsed body).
+  //               console.log("Response", response);
+  //             },
+  //             function(err) { console.error("Execute error", err); });
+  // }
 
 
 
@@ -153,8 +153,8 @@
 <button onclick="get()">GET</button>
     <iframe src = "https://docs.google.com/spreadsheets/d/1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw/edit?usp=sharing" height="500" width="500" title="Sheet"> </iframe>
     <button onclick = "edit()">EDIT ENTRY</button>
-<button onClick="Prop2Sig()">Prop2Sig</button>
-<form> Select CID Consent (yes/no):
+<!-- <button onClick="Prop2Sig()">Prop2Sig</button>
+ --><form> Select CID Consent (yes/no):
   <select selection = "consent">
     <option></option>
     <option>YES</option>

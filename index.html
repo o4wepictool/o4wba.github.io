@@ -106,8 +106,9 @@
                 console.log("Values", values);
                 var rowNum;
                 for (var i = 1; i <= values.length; i++) {
-                  console.log("Current Property is " + values[i]);
+                  console.log("Current Property is " + values[i-1]);
                   if (values[i-1] == "Property2") {
+                    console.log("We have hit Property2");
                     rowNum = i;
                     break;
                   }

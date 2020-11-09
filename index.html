@@ -57,7 +57,10 @@
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
                 console.log("Response", response);
-                console.log("Values", response.values);
+                var obj = response.result
+                console.log("Obj", obj);
+                var values = obj.values;
+                console.log("Values", values);
               },
               function(err) { console.error("Execute error", err); });
   }

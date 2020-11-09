@@ -103,8 +103,8 @@
                 var values = obj.values;
                 console.log("Values", values);
 
-                int rowNum
-                for (int i = 1; i <= values.length; i++) {
+                var rowNum;
+                for (var i = 1; i <= values.length; i++) {
                   if (values[i] == "Property2") {
                     rowNum = i;
                     break;
@@ -117,30 +117,30 @@
               function(err) { console.error("Execute error", err); });
   }
 
-  // function Prop2SigUpdate(int rowNum) {
-  //   String range = "B"+rowNum+":B"+rowNum;
-  //   console.log("range is " + range);
-  //   return gapi.client.sheets.spreadsheets.values.update({
-  //     "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-  //     "range": range,
-  //     "includeValuesInResponse": true,
-  //     "responseDateTimeRenderOption": "FORMATTED_STRING",
-  //     "responseValueRenderOption": "FORMATTED_VALUE",
-  //     "valueInputOption": "RAW",
-  //     "resource": {
-  //       "values": [
-  //         [
-  //           "YES"
-  //         ]
-  //       ]
-  //     }
-  //   })
-  //       .then(function(response) {
-  //               // Handle the results here (response.result has the parsed body).
-  //               console.log("Response", response);
-  //             },
-  //             function(err) { console.error("Execute error", err); });
-  // }
+  function Prop2SigUpdate(int rowNum) {
+    var range = "B"+rowNum+":B"+rowNum;
+    console.log("range is " + range);
+    return gapi.client.sheets.spreadsheets.values.update({
+      "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
+      "range": range,
+      "includeValuesInResponse": true,
+      "responseDateTimeRenderOption": "FORMATTED_STRING",
+      "responseValueRenderOption": "FORMATTED_VALUE",
+      "valueInputOption": "RAW",
+      "resource": {
+        "values": [
+          [
+            "YES"
+          ]
+        ]
+      }
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
 
 
 

@@ -117,7 +117,7 @@
               function(err) { console.error("Execute error", err); });
   }
 
-  function Prop2SigUpdate(int rowNum) {
+  function Prop2SigUpdate(rowNum) {
     var range = "B"+rowNum+":B"+rowNum;
     console.log("range is " + range);
     return gapi.client.sheets.spreadsheets.values.update({

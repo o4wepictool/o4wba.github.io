@@ -129,6 +129,7 @@
     var range = "B"+rowNum+":B"+rowNum;
     console.log("range is " + range);
     console.log("selectConsent is " + selectConsent);
+    console.log("selectConsentValue is " + selectConsent.value);
     return gapi.client.sheets.spreadsheets.values.update({
       "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
       "range": range,

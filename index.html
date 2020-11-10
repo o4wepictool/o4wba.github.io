@@ -23,70 +23,6 @@
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
-  function update() {
-    return gapi.client.sheets.spreadsheets.values.update({
-      "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-      "range": "B2:B2",
-      "includeValuesInResponse": true,
-      "responseDateTimeRenderOption": "FORMATTED_STRING",
-      "responseValueRenderOption": "FORMATTED_VALUE",
-      "valueInputOption": "RAW",
-      "resource": {
-        "values": [
-          [
-            "YES"
-          ]
-        ]
-      }
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
-
-  function get() {
-    return gapi.client.sheets.spreadsheets.values.get({
-      "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-      "range": "A:A",
-      "dateTimeRenderOption": "FORMATTED_STRING",
-      "majorDimension": "COLUMNS",
-      "valueRenderOption": "FORMATTED_VALUE"
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-                var obj = response.result
-                console.log("Obj", obj);
-                var values = obj.values;
-                console.log("Values", values);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
-  function edit() {
-    var requests = [];
-
-    requests.push({
-      findReplace: {
-      find: "PropertyName",
-      replacement: "CHANGED",
-      allSheets: true
-    }
-    });
-
-    var batchUpdateRequest = {requests: requests}
-
-    return gapi.client.sheets.spreadsheets.batchUpdate({
-  spreadsheetId: "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-  resource: batchUpdateRequest
-}).then((response) => {
-  var findReplaceResponse = response.result.replies[1].findReplace;
-  console.log(`${findReplaceResponse.occurrencesChanged} replacements made.`);
-});
-
-  }
-
   function Prop2Sig() {
   return gapi.client.sheets.spreadsheets.values.get({
       "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
@@ -159,10 +95,7 @@
   });
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
-<button onclick="update()">UPDATE</button>
-<button onclick="get()">GET</button>
-    <iframe src = "https://docs.google.com/spreadsheets/d/1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw/edit?usp=sharing" height="500" width="500" title="Sheet"> </iframe>
-    <button onclick = "edit()">EDIT ENTRY</button>
+<iframe src = "https://docs.google.com/spreadsheets/d/1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw/edit?usp=sharing" height="500" width="500" title="Sheet"> </iframe>
 <button onClick="Prop2Sig()">Prop2Sig</button>
 <form id="propertyName">
   <input type="text" name="propertyName">

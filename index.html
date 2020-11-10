@@ -105,9 +105,9 @@
                 var values = valuesObject[0];
                 console.log("Values", values);
                 var rowNum;
-                var propertyName = document.getElementById("propertyName").elements["propertyName"];
+                var propertyName = document.getElementById("propertyName").propertyName;
                 console.log("propertyName is " + propertyName);
-                for (var i = 1; i <= values.length; i++) {
+                for (var i = 1; i < values.length; i++) {
                   console.log("Current Property is " + values[i]);
                   if (values[i] == propertyName) {
                     console.log("We have hit Property2");

@@ -138,7 +138,7 @@
       "resource": {
         "values": [
           [
-            "YES"
+            document.getElementById("selectConsent").value;
           ]
         ]
       }
@@ -165,9 +165,8 @@
 <form id="propertyName">
   <input type="text" name="propertyName">
 </form>
-<form> Select CID Consent (yes/no):
+<form id="selectConsent"> Select CID Consent (yes/no):
   <select selection = "consent">
-    <option></option>
     <option>YES</option>
     <option>NO</option>
   </select>

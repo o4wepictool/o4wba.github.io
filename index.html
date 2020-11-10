@@ -110,9 +110,10 @@
                 for (var i = 1; i < values.length; i++) {
                   console.log("Current Property is " + values[i]);
                   if (values[i] == propertyName) {
-                    console.log("We have hit Property2");
-                    rowNum = i;
+                    console.log("We have hit Property" + i);
+                    rowNum = i+1;
                     Prop2SigUpdate(rowNum);
+                    return;
                   }
                 }
                 window.alert("You done goofed");

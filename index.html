@@ -7,11 +7,6 @@
    <script src="https://apis.google.com/js/api.js"></script>
    <a class="title">Old Fourth Ward Community Improvement District Progress Tracker</a>
   <script>
-  /**
-   * Sample JavaScript code for sheets.spreadsheets.values.update
-   * See instructions for running APIs Explorer code samples locally:
-   * https://developers.google.com/explorer-help/guides/code_samples#javascript
-   */
 
   function authenticate() {
     return gapi.auth2.getAuthInstance()
@@ -132,8 +127,8 @@
   function changeStatusHelper(rowNum) {
     var range = "H"+rowNum+":H"+rowNum;
     console.log("range is " + range);
-    console.log("PropertyStatus is " + propertyStatus.propertyName);
-    console.log("PropertyStatusValue is " + propertyStatus.propertyName.value);
+    console.log("PropertyStatus is " + propertyStatus.propertyStatus);
+    console.log("PropertyStatusValue is " + propertyStatus.propertyStatus.value);
     return gapi.client.sheets.spreadsheets.values.update({
       "spreadsheetId": "1gIAUdgNNjKO3A6QUKgo_Yzt4EbMkVEp-CtXNhfPG6WE",
       "range": range,
@@ -155,76 +150,6 @@
               },
               function(err) { console.error("Execute error", err); });
   }
-
-
-
-
-  // function Prop2Sig() {
-  // return gapi.client.sheets.spreadsheets.values.get({
-  //     "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-  //     "range": "A:A",
-  //     "dateTimeRenderOption": "FORMATTED_STRING",
-  //     "majorDimension": "COLUMNS",
-  //     "valueRenderOption": "FORMATTED_VALUE"
-  //   })
-  //       .then(function(response) {
-  //               // Handle the results here (response.result has the parsed body).
-  //               console.log("Response", response);
-  //               var obj = response.result
-  //               console.log("Obj", obj);
-  //               var valuesObject = obj.values;
-  //               console.log("ValuesObject", valuesObject);
-  //               var values = valuesObject[0];
-  //               console.log("Values", values);
-  //               var rowNum;
-  //               var propertyName = document.getElementById("propertyName").propertyName.value;
-  //               console.log("propertyName is " + propertyName);
-  //               for (var i = 1; i < values.length; i++) {
-  //                 console.log("Current Property is " + values[i]);
-  //                 if (values[i] == propertyName) {
-  //                   console.log("We have hit Property" + i);
-  //                   rowNum = i+1;
-  //                   Prop2SigUpdate(rowNum);
-  //                   return;
-  //                 }
-  //               }
-  //               window.alert("You done goofed");
-  //               console.log("rowNum is " + rowNum);
-
-  //             // Prop2SigUpdate(rowNum);
-
-  //             },
-  //             function(err) { console.error("Execute error", err); });
-  // }
-
-  // function Prop2SigUpdate(rowNum) {
-  //   var range = "B"+rowNum+":B"+rowNum;
-  //   console.log("range is " + range);
-  //   console.log("selectConsent is " + selectConsent);
-  //   console.log("selectConsentValue is " + selectConsent.value);
-  //   return gapi.client.sheets.spreadsheets.values.update({
-  //     "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-  //     "range": range,
-  //     "includeValuesInResponse": true,
-  //     "responseDateTimeRenderOption": "FORMATTED_STRING",
-  //     "responseValueRenderOption": "FORMATTED_VALUE",
-  //     "valueInputOption": "RAW",
-  //     "resource": {
-  //       "values": [
-  //         [
-  //           document.getElementById("selectConsent").value
-  //         ]
-  //       ]
-  //     }
-  //   })
-  //       .then(function(response) {
-  //               // Handle the results here (response.result has the parsed body).
-  //               console.log("Response", response);
-  //             },
-  //             function(err) { console.error("Execute error", err); });
-  // }
-
-
 
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "773931345380-h72omf2okreqiud6ff9bmn33ej7v3e8e.apps.googleusercontent.com"});
@@ -265,16 +190,5 @@
   </div>
 </div>
 
-
-<!--
-<button class="AuthorizeAndLoad" onclick="authenticate().then(loadClient)">authorize and load</button>
-<button onClick="Prop2Sig()">Prop2Sig</button>
-<form id="thing"> Select CID Consent (yes/no):
-  <select selection = "consent" id="selectConsent">
-    <option>Y</option>
-    <option>N</option>
-    <option>C</option>
-  </select>
-</form> -->
   </body>
 </html>

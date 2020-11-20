@@ -48,7 +48,7 @@
                 console.log("parcelID1 is " + parcelID1);
                 for (var i = 1; i < values.length; i++) {
                   console.log("Current ParcelID is " + values[i]);
-                  if (values[i] == propertyName) {
+                  if (values[i] == parcelID1) {
                     console.log("We have hit ParcelID" + i);
                     rowNum = i+1;
                     changeConsentHelper(rowNum);
@@ -113,7 +113,7 @@
                 console.log("parcelID is " + parcelID2);
                 for (var i = 1; i < values.length; i++) {
                   console.log("Current ParcelID is " + values[i]);
-                  if (values[i] == propertyName) {
+                  if (values[i] == parcelID2) {
                     console.log("We have hit ParcelID" + i);
                     rowNum = i+1;
                     changeStatusHelper(rowNum);

@@ -1,0 +1,49 @@
+body {
+    background-color: #495057 !important;
+    text-align: center;
+}
+
+.title {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 50px;
+    margin-right: 10px;
+    color: teal !important;
+    margin-bottom: 50px;
+}
+
+.tableau {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.bottomLayer {
+}
+
+.Authorize {
+  float: left;
+  width: 33.33%;
+}
+
+.signatures {
+  float: left;
+  width: 33.33%;
+}
+
+.status {
+  float: left;
+  width: 33.33%;
+}
+
+#idk {
+    float: right;
+    margin-right: 20%;
+}
+
+#thing {
+    margin-left: 20%;
+}
+
+#changeThing {
+    margin-top: 1%;
+    margin-left: 17%;
+}

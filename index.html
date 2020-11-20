@@ -17,7 +17,9 @@
   function loadClient() {
     gapi.client.setApiKey("AIzaSyAEGID3eRBMG9fzTz245QclKiMS93y_DSE");
     return gapi.client.load("https://sheets.googleapis.com/$discovery/rest?version=v4")
-        .then(function() { console.log("GAPI client loaded for API"); },
+        .then(function() {
+          Window.alert("Authorized and Credentials Loaded");
+          console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
@@ -64,6 +66,7 @@
     console.log("range is " + range);
     console.log("selectConsent is " + selectConsent);
     console.log("selectConsentValue is " + selectConsent.value);
+    window.alert("ParcelID " + document.getElementById("parcelID1").propertyName.value + " updated with consent value: " + document.getElementById("selectConsent").value);
     return gapi.client.sheets.spreadsheets.values.update({
       "spreadsheetId": "1gIAUdgNNjKO3A6QUKgo_Yzt4EbMkVEp-CtXNhfPG6WE",
       "range": range,
@@ -129,6 +132,7 @@
     console.log("range is " + range);
     console.log("PropertyStatus is " + propertyStatus.propertyStatus);
     console.log("PropertyStatusValue is " + propertyStatus.propertyStatus.value);
+    window.alert("ParcelID " + document.getElementById("parcelID2").propertyName.value + " updated with status: " + document.getElementById("propertyStatus").propertyStatus.value);
     return gapi.client.sheets.spreadsheets.values.update({
       "spreadsheetId": "1gIAUdgNNjKO3A6QUKgo_Yzt4EbMkVEp-CtXNhfPG6WE",
       "range": range,

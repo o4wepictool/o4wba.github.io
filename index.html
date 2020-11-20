@@ -159,70 +159,70 @@
 
 
 
-  function Prop2Sig() {
-  return gapi.client.sheets.spreadsheets.values.get({
-      "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-      "range": "A:A",
-      "dateTimeRenderOption": "FORMATTED_STRING",
-      "majorDimension": "COLUMNS",
-      "valueRenderOption": "FORMATTED_VALUE"
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-                var obj = response.result
-                console.log("Obj", obj);
-                var valuesObject = obj.values;
-                console.log("ValuesObject", valuesObject);
-                var values = valuesObject[0];
-                console.log("Values", values);
-                var rowNum;
-                var propertyName = document.getElementById("propertyName").propertyName.value;
-                console.log("propertyName is " + propertyName);
-                for (var i = 1; i < values.length; i++) {
-                  console.log("Current Property is " + values[i]);
-                  if (values[i] == propertyName) {
-                    console.log("We have hit Property" + i);
-                    rowNum = i+1;
-                    Prop2SigUpdate(rowNum);
-                    return;
-                  }
-                }
-                window.alert("You done goofed");
-                console.log("rowNum is " + rowNum);
+  // function Prop2Sig() {
+  // return gapi.client.sheets.spreadsheets.values.get({
+  //     "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
+  //     "range": "A:A",
+  //     "dateTimeRenderOption": "FORMATTED_STRING",
+  //     "majorDimension": "COLUMNS",
+  //     "valueRenderOption": "FORMATTED_VALUE"
+  //   })
+  //       .then(function(response) {
+  //               // Handle the results here (response.result has the parsed body).
+  //               console.log("Response", response);
+  //               var obj = response.result
+  //               console.log("Obj", obj);
+  //               var valuesObject = obj.values;
+  //               console.log("ValuesObject", valuesObject);
+  //               var values = valuesObject[0];
+  //               console.log("Values", values);
+  //               var rowNum;
+  //               var propertyName = document.getElementById("propertyName").propertyName.value;
+  //               console.log("propertyName is " + propertyName);
+  //               for (var i = 1; i < values.length; i++) {
+  //                 console.log("Current Property is " + values[i]);
+  //                 if (values[i] == propertyName) {
+  //                   console.log("We have hit Property" + i);
+  //                   rowNum = i+1;
+  //                   Prop2SigUpdate(rowNum);
+  //                   return;
+  //                 }
+  //               }
+  //               window.alert("You done goofed");
+  //               console.log("rowNum is " + rowNum);
 
-              // Prop2SigUpdate(rowNum);
+  //             // Prop2SigUpdate(rowNum);
 
-              },
-              function(err) { console.error("Execute error", err); });
-  }
+  //             },
+  //             function(err) { console.error("Execute error", err); });
+  // }
 
-  function Prop2SigUpdate(rowNum) {
-    var range = "B"+rowNum+":B"+rowNum;
-    console.log("range is " + range);
-    console.log("selectConsent is " + selectConsent);
-    console.log("selectConsentValue is " + selectConsent.value);
-    return gapi.client.sheets.spreadsheets.values.update({
-      "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
-      "range": range,
-      "includeValuesInResponse": true,
-      "responseDateTimeRenderOption": "FORMATTED_STRING",
-      "responseValueRenderOption": "FORMATTED_VALUE",
-      "valueInputOption": "RAW",
-      "resource": {
-        "values": [
-          [
-            document.getElementById("selectConsent").value
-          ]
-        ]
-      }
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
+  // function Prop2SigUpdate(rowNum) {
+  //   var range = "B"+rowNum+":B"+rowNum;
+  //   console.log("range is " + range);
+  //   console.log("selectConsent is " + selectConsent);
+  //   console.log("selectConsentValue is " + selectConsent.value);
+  //   return gapi.client.sheets.spreadsheets.values.update({
+  //     "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
+  //     "range": range,
+  //     "includeValuesInResponse": true,
+  //     "responseDateTimeRenderOption": "FORMATTED_STRING",
+  //     "responseValueRenderOption": "FORMATTED_VALUE",
+  //     "valueInputOption": "RAW",
+  //     "resource": {
+  //       "values": [
+  //         [
+  //           document.getElementById("selectConsent").value
+  //         ]
+  //       ]
+  //     }
+  //   })
+  //       .then(function(response) {
+  //               // Handle the results here (response.result has the parsed body).
+  //               console.log("Response", response);
+  //             },
+  //             function(err) { console.error("Execute error", err); });
+  // }
 
 
 

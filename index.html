@@ -26,6 +26,139 @@
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
+  function changeConsent() {
+    return gapi.client.sheets.spreadsheets.values.get({
+      "spreadsheetId": "1gIAUdgNNjKO3A6QUKgo_Yzt4EbMkVEp-CtXNhfPG6WE",
+      "range": "A:A",
+      "dateTimeRenderOption": "FORMATTED_STRING",
+      "majorDimension": "COLUMNS",
+      "valueRenderOption": "FORMATTED_VALUE"
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+                var obj = response.result
+                console.log("Obj", obj);
+                var valuesObject = obj.values;
+                console.log("ValuesObject", valuesObject);
+                var values = valuesObject[0];
+                console.log("Values", values);
+                var rowNum;
+                var parcelID1 = document.getElementById("parcelID1").propertyName.value;
+                console.log("parcelID1 is " + parcelID1);
+                for (var i = 1; i < values.length; i++) {
+                  console.log("Current ParcelID is " + values[i]);
+                  if (values[i] == propertyName) {
+                    console.log("We have hit ParcelID" + i);
+                    rowNum = i+1;
+                    changeConsentHelper(rowNum);
+                    return;
+                  }
+                }
+                window.alert("Incorrect ParcelID");
+                console.log("rowNum is " + rowNum);
+
+              // Prop2SigUpdate(rowNum);
+
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
+  function changeConsentHelper(rowNum) {
+    var range = "G"+rowNum+":G"+rowNum;
+    console.log("range is " + range);
+    console.log("selectConsent is " + selectConsent);
+    console.log("selectConsentValue is " + selectConsent.value);
+    return gapi.client.sheets.spreadsheets.values.update({
+      "spreadsheetId": "1gIAUdgNNjKO3A6QUKgo_Yzt4EbMkVEp-CtXNhfPG6WE",
+      "range": range,
+      "includeValuesInResponse": true,
+      "responseDateTimeRenderOption": "FORMATTED_STRING",
+      "responseValueRenderOption": "FORMATTED_VALUE",
+      "valueInputOption": "RAW",
+      "resource": {
+        "values": [
+          [
+            document.getElementById("selectConsent").value
+          ]
+        ]
+      }
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
+  function changeStatus() {
+    return gapi.client.sheets.spreadsheets.values.get({
+      "spreadsheetId": "1gIAUdgNNjKO3A6QUKgo_Yzt4EbMkVEp-CtXNhfPG6WE",
+      "range": "A:A",
+      "dateTimeRenderOption": "FORMATTED_STRING",
+      "majorDimension": "COLUMNS",
+      "valueRenderOption": "FORMATTED_VALUE"
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+                var obj = response.result
+                console.log("Obj", obj);
+                var valuesObject = obj.values;
+                console.log("ValuesObject", valuesObject);
+                var values = valuesObject[0];
+                console.log("Values", values);
+                var rowNum;
+                var parcelID2 = document.getElementById("parcelID2").propertyName.value;
+                console.log("parcelID is " + parcelID2);
+                for (var i = 1; i < values.length; i++) {
+                  console.log("Current ParcelID is " + values[i]);
+                  if (values[i] == propertyName) {
+                    console.log("We have hit ParcelID" + i);
+                    rowNum = i+1;
+                    changeStatusHelper(rowNum);
+                    return;
+                  }
+                }
+                window.alert("Incorrect ParcelID");
+                console.log("rowNum is " + rowNum);
+
+              // Prop2SigUpdate(rowNum);
+
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
+  function changeStatusHelper(rowNum) {
+    var range = "H"+rowNum+":H"+rowNum;
+    console.log("range is " + range);
+    console.log("selectConsent is " + selectConsent);
+    console.log("selectConsentValue is " + selectConsent.value);
+    return gapi.client.sheets.spreadsheets.values.update({
+      "spreadsheetId": "1gIAUdgNNjKO3A6QUKgo_Yzt4EbMkVEp-CtXNhfPG6WE",
+      "range": range,
+      "includeValuesInResponse": true,
+      "responseDateTimeRenderOption": "FORMATTED_STRING",
+      "responseValueRenderOption": "FORMATTED_VALUE",
+      "valueInputOption": "RAW",
+      "resource": {
+        "values": [
+          [
+            document.getElementById("propertyStatus").value
+          ]
+        ]
+      }
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
+
+
+
   function Prop2Sig() {
   return gapi.client.sheets.spreadsheets.values.get({
       "spreadsheetId": "1qdJk-kucMIQxfa-Na1hc8ceQ8jbBv1Umo42vbW2PGVw",
@@ -106,7 +239,7 @@
     <button class="AuthorizeAndLoad" onclick="authenticate().then(loadClient)">authorize and load</button>
   </div>
   <div class="Signatures">
-    <form id="propertyName">
+    <form id="parcelID1">
       <label>Parcel ID</label>
       <input type="text" name="propertyName">
     </form>
@@ -117,10 +250,10 @@
         <option>C</option>
       </select>
     </form>
-    <button onClick="Prop2Sig()">Change</button>
+    <button onClick="changeConsent()">Change</button>
   </div>
   <div class="Status">
-    <form id="propertyName">
+    <form id="parcelID2">
       <label id="thing">Parcel ID</label>
       <input type="text" name="propertyName" id="idk">
     </form>

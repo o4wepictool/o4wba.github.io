@@ -132,8 +132,8 @@
   function changeStatusHelper(rowNum) {
     var range = "H"+rowNum+":H"+rowNum;
     console.log("range is " + range);
-    console.log("PropertyStatus is " + propertyStatus);
-    console.log("PropertyStatusValue is " + propertyStatus.value);
+    console.log("PropertyStatus is " + propertyStatus.propertyName);
+    console.log("PropertyStatusValue is " + propertyStatus.propertyName.value);
     return gapi.client.sheets.spreadsheets.values.update({
       "spreadsheetId": "1gIAUdgNNjKO3A6QUKgo_Yzt4EbMkVEp-CtXNhfPG6WE",
       "range": range,
@@ -144,7 +144,7 @@
       "resource": {
         "values": [
           [
-            document.getElementById("propertyStatus").value
+            document.getElementById("propertyStatus").propertyName.value
           ]
         ]
       }
